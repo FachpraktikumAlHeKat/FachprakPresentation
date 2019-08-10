@@ -1,0 +1,192 @@
+\documentclass[german,10pt,xcolor=colortbl,compress]{beamer}%,draft]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage{calc}
+\usepackage[ngerman]{babel} % Neue Rechtschreibung
+\usepackage{amsmath,amsthm,amssymb,euscript} % AMS-LaTeX  
+\usepackage{enumerate,graphicx}
+
+\usepackage{sansmathaccent}
+%\pdfmapfile{+sansmathaccent.map}
+\usepackage{calc}
+\usepackage{movie15}
+\usepackage{subfigure}
+\usepackage{wasysym}
+\usepackage{moresize}
+\usepackage{dsfont}
+\usepackage[misc]{ifsym} % for the letter picture before email on last slide
+
+\newcommand{\fT}{\mathcal{T}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\PP}{\mathbb{P}}
+\DeclareMathOperator{\argmin}{argmin}
+
+
+% Load Theme
+%%%%%\usetheme[noptsans,navigation=true, FB=Mathematik, frametotal=true]{TUKL}
+%
+\title{Fachpraktikum}
+\subtitle{Primzahltests modifiziert zum Testen von Polynomen auf Irreduzibilität}
+\date[]{14.08.2019} %\\[1ex] OCIP 2016
+%\author[Claudia Totzeck]{Claudia Totzeck}
+%\institute[]{AG Technomathematik\\FB Mathematik\\TU Kaiserslautern}
+%Setze ein Logo auf der Titelseite unten rechts
+%%%%%\renewcommand{\theSecondLogo}{}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\dd}{\,\mathrm{d}}
+\newtheorem{proposition}{Proposition}
+
+\setbeamercolor*{block title example}{bg=lightgray}
+\setbeamercolor*{block body example}{fg= black, bg= white}
+
+%%%%%\setbeamercolor{block title}{bg=tuklblue,fg=white}
+
+\begin{document}
+	\maketitle
+		
+	\begin{frame}{Einleitung}	
+		Primzahltests untersuchen: welche Eigenschaften werden genutzt? \\
+		\medskip 
+		
+		Übertragbarkeit auf Polynome über $\ZZ_q$ bei festem $q \in \PP$?	
+	\end{frame}
+	
+	
+	\begin{frame}{Fermat}
+		\begin{block}{Satz von Fermat}
+			Ist $p$ eine Primzahl, so gilt $  \forall a \in \NN:  
+			\newline	
+			a^{p-1} \equiv 1 \text{ mod } p $	
+		\end{block}
+	
+		\medskip
+		Algebra: $|(\ZZ_p)^*| = p-1$ \\
+		\medskip
+		Polynome: $ |(\ZZ_q[x]/f)^*| = q^{deg(f)}-1 $ für irreduzible Polynome $f$	
+	\end{frame}
+	
+	
+	\begin{frame}{Fermat}
+		\begin{block}{Fermat für Polynome}
+			Ist $f$ irreduzibel über $\ZZ_q$, so gilt $  \forall a \in \ZZ_q[x]:
+			 \newline a^{q^{deg(f)}-1}  \equiv 1 \text{ mod } f$
+		\end{block}
+	\end{frame}
+
+
+	\begin{frame}{Carmichael-Polynome}
+			
+	
+	
+	\end{frame}
+
+
+	\begin{frame}{Miller-Rabin}
+		\begin{itemize}
+			\item finde $s,u \in \NN,u $ ungerade mit $p-1=2^su $
+			\item wähle $a \in \NN$ 
+			\item teste, ob $a^u \equiv 1 \text{ mod } p$
+			\item für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } p$
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{Miller-Rabin für Polynome}
+		\begin{itemize}
+			\item finde $s,u \in \NN,u $ ungerade mit $q^{deg(f)}-1=2^su $
+			\item wähle $a \in \ZZ_q[x]$ 
+			\item teste, ob $a^u \equiv 1 \text{ mod } f$
+			\item für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } f$	
+		\end{itemize}		
+	\end{frame}
+
+
+	\begin{frame}{Schwierigkeiten}
+		Laufzeit: 
+		
+		\begin{itemize}
+			\item sehr viele Allokationen; gelöst durch In-place-rechnen
+			\item Potenzierung langsam, da $u$ oft groß
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{Power-Residue Symbol}
+		Legendre Symbol für Polynome 
+		\begin{block}{Definition}
+			Für $d|q-1 \text{ fest},  a,f \in \ZZ_q[x], f \text{ irreduzibel}, f \nmid a: 
+			\newline 	
+			(\frac{a}{f})_d  \equiv a^{\frac{|f|-1}{d}} \text{ mod } f$
+		\end{block}
+	
+		\begin{block}{Reziprozitätsgesetz}
+			Seien $f,g$ irreduzible Polynome. Dann gilt:
+			$(\frac{g}{f})_d=(-1)^{deg(f)deg(g)\frac{q-1}{d}} \cdot (\frac{f}{g})_d $ 				
+		\end{block}
+	\end{frame}
+
+	
+	\begin{frame}{Jacobi Symbol}
+		Verallgemeinerung des Power-Residue Symbols: f muss nicht irreduzibel sein.
+		
+		\begin{block}{Reziprozitätsgesetz}
+			Seien $f,g$ teilerfremde Polynome, $q$ die Charakteristik von $/FF$ und $d$ ein Teiler von $q-1$.
+			$sgn(f):=lc(f)^{\frac{q-1}{d}}$ 
+			Dann gilt:
+			$\left(\frac{f}{g}\right) \cdot \left(\frac{g}{f}\right)^{-1} = (-1)^{\frac{q-1}{d} \cdot deg(f)\cdot deg(g)}\cdot sgn(f)^{deg(g)} \cdot sgn(g)^{-deg(f)} $
+							
+		\end{block}
+	\end{frame}
+
+	
+	\begin{frame}{Power-Residue Test}
+		\begin{itemize}
+		\item Nutze Reziprozitätsgesetz, um $(\frac{a}{f})_d $ zu berechnen
+		\item vergleiche Ergebnis mit der Definition
+		\end{itemize}
+	\end{frame}
+
+	
+	\begin{frame}{Laufzeit}
+		\begin{itemize}
+			\item Ein Durchlauf sehr schnell; vergleichbar mit \textit{isirreducible}
+			\item Problem: gibt oft fälschlicherweise \texttt{true} aus
+			\item Abhängig von a
+		\end{itemize}
+	\end{frame}
+
+	
+	\begin{frame}{Pocklington}
+		\begin{block}{Pocklington Kriterium}
+			Sei $N\in \NN_{>1}$. $%\exists a, p \in \NN
+			\text{Sei } a \in \NN \text{, s.d. } a^{N-1} \equiv 1 \text{ mod } N$.\\
+			Sei $p$ prim, $p | N-1$ und $p> \sqrt{N}-1$.\\
+			Wenn $gcd(a^{\frac{N-1}{p}}-1,N) = 1$, dann ist $N$ eine Primzahl.
+		\end{block}
+	\end{frame}
+
+		
+	\begin{frame}{Pocklington}
+		\begin{block}{Pocklington für Polynome}
+			Sei $f$ das zu testende Polynom und $a$ ein Polynom, s.d. 
+			$q$ Charakteristik des Rings, $d$ der Grad von $f$.
+			Falls $gcd(a,q^{d-1},f)=1 \quad \forall p \in [\frac{d}{2}, \frac{q^{d-1}}{2}]$ und 
+			$\forall p \in [\frac{d}{2}, \frac{q^{d-1}}{2}]: q^{d-1} \not\equiv 0 \text{ mod } p$ und $gcd(a^{\frac{q^{d-1}}{p}}-1, f)=1$, dann ist $f$ irreduzibel. 
+			
+% bin mir grad nciht sicher, ob das so klappt
+			
+		\end{block}
+	\end{frame}
+
+
+	\begin{frame}{Laufzeit}
+		
+	\end{frame}
+
+
+	\begin{frame}{Lucas-Folgen}
+		Rekursiv definierte Folgen 
+	\end{frame}
+	
+\end{document}
