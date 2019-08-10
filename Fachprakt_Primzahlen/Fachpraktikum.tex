@@ -7,7 +7,7 @@
 \usepackage{enumerate,graphicx}
 
 \usepackage{sansmathaccent}
-\pdfmapfile{+sansmathaccent.map}
+%\pdfmapfile{+sansmathaccent.map}
 \usepackage{calc}
 \usepackage{movie15}
 \usepackage{subfigure}
@@ -139,8 +139,11 @@
 		
 		
 		\begin{block}{Reziprozitätsgesetz}
-			Seien $f,g$ irreduzible Polynome. Dann gilt:
-			noch einfügen!				
+			Seien $f,g$ irreduzible Polynome, q die Charakteristik von $/FF$ und $d$ ein Teiler von $q-1$.
+			sng bezeichnet !!!
+			Dann gilt:
+			$(f/g)*(g/f)^-1 = (-1)^((q-1)/d * deg(f)*deg(g))*sgn(f)^(deg(g))*sgn(g)^^(-deg(f)) $
+							
 		\end{block}
 	\end{frame}
 
@@ -162,7 +165,27 @@
 
 	
 	\begin{frame}{Pocklington}
-		Inhalt...
+		\begin{block}{Pocklington Kriterium}
+			N > 1 eine ganze Zahl. $ \exists a, b \in \NN s.d. a ^(N-1) = 1 mod N$ 
+			Sei p prim, $p	| N-1$ und $p> \sqrt(N)-1$.
+			Wenn $gcd(a^(N-1)/(p-1),N) =1$, dann ist N eine Primzahl.
+		\end{block}
+	\end{frame}
+
+		
+	\begin{frame}{Pocklington}
+		\begin{block}{Pocklington für Polynome}
+			Sei f das zu testende Polynom und  a ein Polynom s.d. 
+			q Charakteristik des Rings, d der Grad von f.
+			Falls $gcd(a,q^(d-1),f)=1$$\forall p \in [d/2, q^(d-1)/2]$ und 
+			$\forall p \in [d/2, q^(d-1)/2]: q^(d-1) != 0 mod p$ und $gcd(a^((q^d-1)/p)-1 , f)==1$ dann ist f irreduzibel. 
+% bin mir grad nciht sicher, ob das so klappt
+			
+		\end{block}
+	\end{frame}
+
+	\begin{frame}{Laufzeit}
+		
 	\end{frame}
 
 	\begin{frame}{Lucas-Folgen}
