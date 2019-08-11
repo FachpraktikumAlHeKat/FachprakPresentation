@@ -46,10 +46,10 @@
 	\maketitle
 		
 	\begin{frame}{Einleitung}	
-		Primzahltests untersuchen: welche Eigenschaften werden genutzt? \\
-		\medskip 
-		
-		Übertragbarkeit auf Polynome über $\ZZ_q$ bei festem $q \in \PP$?	
+		\begin{itemize}
+			\item Primzahltests untersuchen: welche Eigenschaften werden genutzt?
+			\item Übertragbarkeit auf Polynome über $\ZZ_q$ bei festem $q \in \PP$?	
+		\end{itemize}
 	\end{frame}
 	
 	
@@ -72,13 +72,20 @@
 			Ist $f$ irreduzibel über $\ZZ_q$, so gilt für alle $ a \in \ZZ_q[x]:
 			 \newline a^{q^{deg(f)}-1}  \equiv 1 \text{ mod } f$
 		\end{block}
+		\vspace{0.5cm}
+		Als Test auf Irreduzibilität: Gilt $a^{q^{deg(f)}-1}  \not\equiv 1 \text{ mod } f$, dann ist $f$ nicht irreduzibel.
 	\end{frame}
 
 
 	\begin{frame}{Carmichael-Polynome}
-			
-	
-	
+		\begin{block}{Definition}
+			Ein \emph{Carmichael-Polynom} ist ein zusammengesetztes Polynom $f$, sodass $a^{q^{deg(f)}-1}  \equiv 1 \text{ mod } f \text{ für alle } a \in \ZZ_q[x] \text{ mit } deg(ggT(a,f))=0$
+		\end{block}
+		\begin{block}{Satz}
+			Sei $f\in \ZZ_q[x]$. Wenn für alle $f_i$ irreduzibel mit $f_i|f$ gilt, dass $f_i^2 \nmid f$ und $deg(f_i)|deg(f)$, dann ist $f$ ein Carmichael-Polynom.
+		\end{block}
+		\vspace{0.5cm}
+		$\Rightarrow$ false-positives einfach zu finden
 	\end{frame}
 
 
@@ -162,7 +169,7 @@
 			Sei $N\in \NN_{>1}$. $%\exists a, p \in \NN
 			\text{Sei } a \in \NN \text{, s.d. } a^{N-1} \equiv 1 \text{ mod } N$.\\
 			Sei $p$ prim, $p | N-1$ und $p> \sqrt{N}-1$.\\
-			Wenn $gcd(a^{\frac{N-1}{p}}-1,N) = 1$, dann ist $N$ eine Primzahl.
+			Wenn $ggT(a^{\frac{N-1}{p}}-1,N) = 1$, dann ist $N$ eine Primzahl.
 		\end{block}
 	\end{frame}
 
@@ -171,8 +178,9 @@
 		\begin{block}{Pocklington für Polynome}
 			Sei $f$ das zu testende Polynom und $a$ ein Polynom, s.d. 
 			$q$ Charakteristik des Rings, $d$ der Grad von $f$.
-			Falls $gcd(a,q^{d-1},f)=1 \quad \forall p \in [\frac{d}{2}, \frac{q^{d-1}}{2}]$ und 
-			$\forall p \in [\frac{d}{2}, \frac{q^{d-1}}{2}]: q^{d-1} \not\equiv 0 \text{ mod } p$ und $gcd(a^{\frac{q^{d-1}}{p}}-1, f)=1$, dann ist $f$ irreduzibel. 
+			Falls $a^{q^{d}-1}\equiv 1 \text{ mod }f$ und 
+			$\exists p \in [q^{\frac{d}{2}}, \frac{q^{d-1}}{2}]\text{, } p \text{ prim, } p|q^{d-1} $ : $ggT(a^{\frac{q^{d-1}}{p}}-1, f)=1$, dann ist $f$ irreduzibel. 
+			
 			
 % bin mir grad nciht sicher, ob das so klappt
 			
@@ -186,7 +194,19 @@
 
 
 	\begin{frame}{Lucas-Folgen}
-		Rekursiv definierte Folgen 
+		Lineare Rekursionsgleichung $(a_n)_n$ von Grad 2
+		\begin{block}{Satz}
+			$\chi_c$ irreduzibel $\Rightarrow per(c) \bigl| |K|^2-1 = q^{deg(f)^2}-1$
+		\end{block}
+		\medskip
+		Als Test auf Irreduzibilität: $a_{per} \neq a_0 \text{ oder } a_{per+1} \neq a_1 \Rightarrow f$ nicht irreduzibel.\\
+		\medskip
+		Verschiedene Möglichkeiten $a_{per}$ zu berechnen:
+		\begin{itemize}
+			\item rekursiv $\Rightarrow$ Laufzeit!
+			\item explizit mit Matrix
+			\item mit Lucas-Kette: bestimmte Form der Rekursionsgleichung gegeben, dafür einfache Formel, die Glieder explizit auszurechnen
+		\end{itemize}
 	\end{frame}
 	
 \end{document}
