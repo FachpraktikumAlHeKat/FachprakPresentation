@@ -26,6 +26,9 @@
 % Load Theme
 %%%%%\usetheme[noptsans,navigation=true, FB=Mathematik, frametotal=true]{TUKL}
 %
+
+\beamerdefaultoverlayspecification{<+->}
+
 \title{Fachpraktikum}
 \subtitle{Primzahltests modifiziert zum Testen von Polynomen auf Irreduzibilität}
 \date[]{14.08.2019} %\\[1ex] OCIP 2016
@@ -47,13 +50,13 @@
 		
 	\begin{frame}{Einleitung}	
 		\begin{itemize}
-			\item Primzahltests untersuchen: welche Eigenschaften werden genutzt?
+			\item Primzahltests untersuchen: Welche Eigenschaften werden genutzt?
 			\item Übertragbarkeit auf Polynome über $\ZZ_q$ bei festem $q \in \PP$?	
 		\end{itemize}
 	\end{frame}
 	
 	
-	\begin{frame}{Fermat}
+	\begin{frame}[<*>]{Fermat}
 		\begin{block}{Satz von Fermat}
 			Ist $p$ eine Primzahl, so gilt für alle $ a \in \NN \text{ mit } p \nmid a:  
 			\newline	
@@ -61,50 +64,57 @@
 		\end{block}
 	
 		\medskip
-		Algebra: $|(\ZZ_p)^*| = p-1$ \\
+		\uncover<2->{
+		Algebra: $|(\ZZ_p)^*| = p-1$} \\
 		\medskip
-		Polynome: $ |(\ZZ_q[x]/f)^*| = q^{deg(f)}-1 $ für irreduzible Polynome $f$	
+		\uncover<3->{
+		Polynome: $ |(\ZZ_q[x]/f)^*| = q^{deg(f)}-1 $ für irreduzible Polynome $f$}	
 	\end{frame}
 	
 	
-	\begin{frame}{Fermat}
+	\begin{frame}[<*>]{Fermat}
 		\begin{block}{Fermat für Polynome}
 			Ist $f$ irreduzibel über $\ZZ_q$, so gilt für alle $ a \in \ZZ_q[x] \text{ mit } f \nmid a:
 			 \newline a^{q^{deg(f)}-1}  \equiv 1 \text{ mod } f$
 		\end{block}
 		\medskip
-		Als Test auf Irreduzibilität: Gilt $a^{q^{deg(f)}-1}  \not\equiv 1 \text{ mod } f$, dann ist $f$ nicht irreduzibel.
+		\uncover<2->{
+		Als Test auf Irreduzibilität: Gilt $a^{q^{deg(f)}-1}  \not\equiv 1 \text{ mod } f$, dann ist $f$ nicht irreduzibel.}
 	\end{frame}
 
 
-	\begin{frame}{Carmichael-Polynome}
+	\begin{frame}[<*>]{Carmichael-Polynome}
 		\begin{block}{Definition}
 			Ein \emph{Carmichael-Polynom} ist ein zusammengesetztes Polynom $f$, sodass $a^{q^{deg(f)}-1}  \equiv 1 \text{ mod } f \text{ für alle } a \in \ZZ_q[x] \text{ mit } deg(ggT(a,f))=0$
 		\end{block}
+		\uncover<2->{
 		\begin{block}{Satz}
 			Sei $f\in \ZZ_q[x]$. Wenn für alle $f_i$ irreduzibel mit $f_i|f$ gilt, dass $f_i^2 \nmid f$ und $deg(f_i)|deg(f)$, dann ist $f$ ein Carmichael-Polynom.
-		\end{block}
+		\end{block}}
 		\vspace{0.5cm}
-		$\Rightarrow$ false-positives einfach zu finden
+		\uncover<3->{
+		$\Rightarrow$ false-positives einfach zu finden}
+	
+	%haben versucht, den Anteil Carmichael-Polynome zu bestimmen/abzuschätzen; hat nicht so geklappt.
 	\end{frame}
 
 
 	\begin{frame}{Miller-Rabin}
 		\begin{itemize}
-			\item finde $s,u \in \NN,u $ ungerade mit $p-1=2^su $
-			\item wähle $a \in \NN$ 
-			\item teste, ob $a^u \equiv 1 \text{ mod } p$
-			\item für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } p$
+			\item Finde $s,u \in \NN,u $ ungerade mit $p-1=2^su $
+			\item Wähle $a \in \NN$ 
+			\item Teste, ob $a^u \equiv 1 \text{ mod } p$
+			\item Für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } p$
 		\end{itemize}
 	\end{frame}
 
 
 	\begin{frame}{Miller-Rabin für Polynome}
 		\begin{itemize}
-			\item finde $s,u \in \NN,u $ ungerade mit $q^{deg(f)}-1=2^su $
-			\item wähle $a \in \ZZ_q[x]$ 
-			\item teste, ob $a^u \equiv 1 \text{ mod } f$
-			\item für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } f$	
+			\item Finde $s,u \in \NN,u $ ungerade mit $q^{deg(f)}-1=2^su $
+			\item Wähle $a \in \ZZ_q[x]$ 
+			\item Teste, ob $a^u \equiv 1 \text{ mod } f$
+			\item Für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } f$	
 		\end{itemize}		
 	\end{frame}
 
@@ -113,7 +123,7 @@
 		Laufzeit: 
 		
 		\begin{itemize}
-			\item sehr viele Allokationen; gelöst durch In-place-rechnen
+			\item Sehr viele Allokationen; gelöst durch In-place-rechnen
 			\item Potenzierung langsam, da $u$ oft groß
 		\end{itemize}
 	\end{frame}
@@ -135,10 +145,10 @@
 
 	
 	\begin{frame}{Jacobi Symbol}
-		Verallgemeinerung des Power-Residue Symbols: f muss nicht irreduzibel sein.
+		Verallgemeinerung des Power-Residue Symbols: $f$ muss nicht irreduzibel sein.
 		
 		\begin{block}{Reziprozitätsgesetz}
-			Seien $f,g$ teilerfremde Polynome, $q$ die Charakteristik von $/FF$ und $d$ ein Teiler von $q-1$.
+			Seien $f,g$ teilerfremde Polynome, $q$ die Charakteristik von $\ZZ_q[x]$ und $d$ ein Teiler von $q-1$.
 			$sgn(f):=lc(f)^{\frac{q-1}{d}}$ 
 			Dann gilt:
 			$\left(\frac{f}{g}\right) \cdot \left(\frac{g}{f}\right)^{-1} = (-1)^{\frac{q-1}{d} \cdot deg(f)\cdot deg(g)}\cdot sgn(f)^{deg(g)} \cdot sgn(g)^{-deg(f)} $
@@ -150,7 +160,7 @@
 	\begin{frame}{Power-Residue Test}
 		\begin{itemize}
 		\item Nutze Reziprozitätsgesetz, um $(\frac{a}{f})_d $ zu berechnen
-		\item vergleiche Ergebnis mit der Definition
+		\item Vergleiche Ergebnis mit der Definition
 		\end{itemize}
 	\end{frame}
 
@@ -180,11 +190,10 @@
 			$q$ Charakteristik des Rings, $d$ der Grad von $f$.
 			Falls $a^{q^{d}-1}\equiv 1 \text{ mod }f$ und 
 			$\exists p \in [q^{\frac{d}{2}}, \frac{q^{d-1}}{2}]\text{, } p \text{ prim, } p|q^{d-1} $ : $ggT(a^{\frac{q^{d-1}}{p}}-1, f)=1$, dann ist $f$ irreduzibel. 
-			
-			
-% bin mir grad nciht sicher, ob das so klappt
-			
 		\end{block}
+	
+	%Das Blöde ist, ein solches $p$ existiert nicht immer; dafür ist gut, dass wenn es mal funktioniert, hat man ein Zertifikat, mit dem man leicht nachweisen kann, dass es prim/irreduzibel ist.
+	%$\Rightarrow$ tatsächlich ein Primzahltest/Irreduzibilitätstest.
 	\end{frame}
 
 
@@ -193,19 +202,25 @@
 	\end{frame}
 
 
-	\begin{frame}{Lucas-Folgen}
+	\begin{frame}[<*>]{Lucas-Folgen}
 		Lineare Rekursionsgleichung $(a_n)_n$ von Grad 2
 		\begin{block}{Satz}
-			$\chi_c$ irreduzibel $\Rightarrow per(c) \bigl| |K|^2-1 = q^{deg(f)^2}-1$
+			$\chi_c$ irreduzibel $\Rightarrow per(c) \bigl| |K|^2-1 = (q^{deg(f)})^2-1$
 		\end{block}
 		\medskip
-		Als Test auf Irreduzibilität: $a_{per} \neq a_0 \text{ oder } a_{per+1} \neq a_1 \Rightarrow f$ nicht irreduzibel.\\
+		\uncover<2->{
+		Als Test auf Irreduzibilität: $a_{per} \neq a_0 \text{ oder } a_{per+1} \neq a_1 \Rightarrow f$ nicht irreduzibel.}\\
 		\medskip
-		Verschiedene Möglichkeiten $a_{per}$ zu berechnen:
+		\uncover<3->{
+		Verschiedene Möglichkeiten $a_{per}$ zu berechnen:}
 		\begin{itemize}
-			\item rekursiv $\Rightarrow$ Laufzeit!
-			\item explizit mit Matrix
-			\item mit Lucas-Kette: bestimmte Form der Rekursionsgleichung gegeben, dafür einfache Formel, die Glieder explizit auszurechnen
+			\uncover<4->{
+			\item rekursiv $\Rightarrow$ Laufzeit!}
+			\uncover<5->{
+			\item explizit mit Matrix}
+			\uncover<6->{
+			\item mit Lucas-Kette: bestimmte Form der Rekursionsgleichung gegeben, dafür einfache Formel, die Glieder explizit auszurechnen; rechnen im Ring} \uncover<7->{$((\ZZ_q[t]/f)[s])/(s^2-a \cdot s+b)$}
+			%$a,b \in \ZZ_q[t]$
 		\end{itemize}
 	\end{frame}
 	
