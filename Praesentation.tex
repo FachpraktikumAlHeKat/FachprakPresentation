@@ -125,6 +125,7 @@
 		\begin{itemize}
 			\item Sehr viele Allokationen; gelöst durch In-place-rechnen
 			\item Potenzierung langsam, da $u$ oft groß
+			$\Rightarrow$ verbessert durch binäre Potenzierung
 		\end{itemize}
 	\end{frame}
 
@@ -197,11 +198,14 @@
 	\end{frame}
 
 
-	\begin{frame}{Laufzeit}
+	\begin{frame}{Laufzeit & Probleme}
+		\begin{itemize}
 		\item Ein Durchlauf sehr schnell; vergleichbar mit \textit{isirreducible} 
-			
-		\item Schnell durch In-Place-Rechnung
-			
+		$\Rightarrow$ durch In-Place-Rechnung und Binäre Potenzierung
+		
+		\item $p$ existiert nicht immer $\Rightarrow$ nicht immer eine Aussage
+		\item falls $p$ existiert $\Rightarrow$ Zertifikat zum Nachweisen der Irreduzibilität 
+		\end{itemize}	
 		
 	\end{frame}
 
