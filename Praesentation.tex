@@ -131,7 +131,7 @@
 
 
 	\begin{frame}{Power-Residue Symbol}
-		Legendre Symbol für Polynome 
+		Legendre-Symbol für Polynome 
 		\begin{block}{Definition}
 			Für $d|q-1 \text{ fest},  a,f \in \ZZ_q[x], f \text{ irreduzibel}, f \nmid a: 
 			\newline 	
@@ -145,7 +145,7 @@
 	\end{frame}
 
 	
-	\begin{frame}{Jacobi Symbol}
+	\begin{frame}{Power-Residue Symbol}
 		Verallgemeinerung des Power-Residue Symbols: $f$ muss nicht irreduzibel sein.
 		
 		\begin{block}{Reziprozitätsgesetz}
@@ -190,7 +190,7 @@
 			Sei $f$ das zu testende Polynom und $a$ ein Polynom, s.d. 
 			$q$ Charakteristik des Rings, $d$ der Grad von $f$.
 			Falls $a^{q^{d}-1}\equiv 1 \text{ mod }f$ und 
-			$\exists p \in [q^{\frac{d}{2}}, \frac{q^{d-1}}{2}]\text{, } p \text{ prim, } p|q^{d-1} $ : $ggT(a^{\frac{q^{d-1}}{p}}-1, f)=1$, dann ist $f$ irreduzibel. 
+			$\exists p > q^{\frac{d}{2}} text{, } p \text{ prim, } p|q^{d}-1 $ : $ggT(a^{\frac{q^{d}-1}{p}}-1, f)=1$, dann ist $f$ irreduzibel. 
 		\end{block}
 	
 	%Das Blöde ist, ein solches $p$ existiert nicht immer; dafür ist gut, dass wenn es mal funktioniert, hat man ein Zertifikat, mit dem man leicht nachweisen kann, dass es prim/irreduzibel ist.
