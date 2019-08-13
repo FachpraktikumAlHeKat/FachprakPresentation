@@ -24,7 +24,7 @@
 
 
 % Load Theme
-%%%%%\usetheme[noptsans,navigation=true, FB=Mathematik, frametotal=true]{TUKL}
+\usetheme[noptsans,navigation=true, FB=Mathematik, frametotal=true]{TUKL}
 %
 
 \beamerdefaultoverlayspecification{<+->}
@@ -32,7 +32,7 @@
 \title{Fachpraktikum}
 \subtitle{Primzahltests modifiziert zum Testen von Polynomen auf Irreduzibilität}
 \date[]{14.08.2019} %\\[1ex] OCIP 2016
-%\author[Claudia Totzeck]{Claudia Totzeck}
+\author[]{Helena Petri, Alina Schneider, Kathrin Wirschem}
 %\institute[]{AG Technomathematik\\FB Mathematik\\TU Kaiserslautern}
 %Setze ein Logo auf der Titelseite unten rechts
 %%%%%\renewcommand{\theSecondLogo}{}
@@ -43,14 +43,14 @@
 \setbeamercolor*{block title example}{bg=lightgray}
 \setbeamercolor*{block body example}{fg= black, bg= white}
 
-%%%%%\setbeamercolor{block title}{bg=tuklblue,fg=white}
+\setbeamercolor{block title}{bg=tuklblue,fg=white}
 
 \begin{document}
 	\maketitle
 		
 	\begin{frame}{Einleitung}	
 		\begin{itemize}
-			\item Primzahltests untersuchen: Welche Eigenschaften werden genutzt?
+			\item Primzahltests untersuchen
 			\item Übertragbarkeit auf Polynome über $\ZZ_q$ bei festem $q \in \PP$?	
 		\end{itemize}
 	\end{frame}
@@ -65,7 +65,7 @@
 	
 		\medskip
 		\uncover<2->{
-		Algebra: $|(\ZZ_p)^*| = p-1$} \\
+		Zahlen: $|(\ZZ_p)^*| = p-1$} \\
 		\medskip
 		\uncover<3->{
 		Polynome: $ |(\ZZ_q[x]/f)^*| = q^{deg(f)}-1 $ für irreduzible Polynome $f$}	
@@ -124,7 +124,7 @@
 		
 		\begin{itemize}
 			\item Sehr viele Allokationen; gelöst durch In-place-rechnen
-			\item Potenzierung langsam, da $u$ oft groß
+			\item Potenzierung langsam, da $u$ oft groß \\
 			$\Rightarrow$ verbessert durch binäre Potenzierung
 		\end{itemize}
 	\end{frame}
@@ -198,9 +198,9 @@
 	\end{frame}
 
 
-	\begin{frame}{Laufzeit & Probleme}
+	\begin{frame}{Laufzeit und Probleme}
 		\begin{itemize}
-		\item Ein Durchlauf sehr schnell; vergleichbar mit \textit{isirreducible} 
+		\item Ein Durchlauf sehr schnell; vergleichbar mit \textit{isirreducible} \\
 		$\Rightarrow$ durch In-Place-Rechnung und Binäre Potenzierung
 		
 		\item $p$ existiert nicht immer $\Rightarrow$ nicht immer eine Aussage
@@ -231,5 +231,7 @@
 			%$a,b \in \ZZ_q[t]$
 		\end{itemize}
 	\end{frame}
+
+
 	
 \end{document}
