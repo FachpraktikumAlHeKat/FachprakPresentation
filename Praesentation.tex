@@ -99,23 +99,39 @@
 	\end{frame}
 
 
+%	\begin{frame}{Miller-Rabin}
+%		\begin{itemize}
+%			\item Finde $s,u \in \NN,u $ ungerade mit $p-1=2^su $
+%			\item Wähle $a \in \NN$ 
+%			\item Teste, ob $a^u \equiv 1 \text{ mod } p$
+%			\item Für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } p$
+%		\end{itemize}
+%	\end{frame}
+
+
 	\begin{frame}{Miller-Rabin}
-		\begin{itemize}
-			\item Finde $s,u \in \NN,u $ ungerade mit $p-1=2^su $
-			\item Wähle $a \in \NN$ 
-			\item Teste, ob $a^u \equiv 1 \text{ mod } p$
-			\item Für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } p$
-		\end{itemize}
-	\end{frame}
-
-
-	\begin{frame}{Miller-Rabin für Polynome}
+		
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\textbf{...für Zahlen}
+				\begin{itemize}
+					\item Finde $s,u \in \NN,u $ ungerade mit $p-1=2^su $
+					\item Wähle $a \in \NN$ 
+					\item Teste, ob $a^u \equiv 1 \text{ mod } p$
+					\item Für $1\leq t < s \text{ teste, ob }$\\$ a^{2^t u} \equiv -1 \text{ mod } p$
+				\end{itemize}	
+			\end{column}
+			
+		\begin{column}{0.5\textwidth}
+			\textbf{...für Polynome}
 		\begin{itemize}
 			\item Finde $s,u \in \NN,u $ ungerade mit $q^{deg(f)}-1=2^su $
 			\item Wähle $a \in \ZZ_q[x]$ 
 			\item Teste, ob $a^u \equiv 1 \text{ mod } f$
-			\item Für $1\leq t < s \text{ teste, ob } a^{2^t u} \equiv -1 \text{ mod } f$	
-		\end{itemize}		
+			\item Für $1\leq t < s \text{ teste, ob } $\\$a^{2^t u} \equiv -1 \text{ mod } f$	
+		\end{itemize}
+	\end{column}
+	\end{columns}		
 	\end{frame}
 
 
@@ -131,7 +147,7 @@
 
 
 	\begin{frame}{Power-Residue Symbol}
-		Legendre-Symbol für Polynome 
+		Legendre Symbol für Polynome 
 		\begin{block}{Definition}
 			Für $d|q-1 \text{ fest},  a,f \in \ZZ_q[x], f \text{ irreduzibel}, f \nmid a: 
 			\newline 	
@@ -145,14 +161,14 @@
 	\end{frame}
 
 	
-	\begin{frame}{Power-Residue Symbol}
+	\begin{frame}{Jacobi Symbol}
 		Verallgemeinerung des Power-Residue Symbols: $f$ muss nicht irreduzibel sein.
 		
 		\begin{block}{Reziprozitätsgesetz}
-			Seien $f,g$ teilerfremde Polynome, $q$ die Charakteristik von $\ZZ_q[x]$ und $d$ ein Teiler von $q-1$,
-			$s(f):=lc(f)^{\frac{q-1}{d}}$ .
+			Seien $f,g$ teilerfremde Polynome, $q$ die Charakteristik von $\ZZ_q[x]$ und $d$ ein Teiler von $q-1$.
+			$sgn(f):=lc(f)^{\frac{q-1}{d}}$ 
 			Dann gilt:
-			$\left(\frac{f}{g}\right) \cdot \left(\frac{g}{f}\right)^{-1} = (-1)^{\frac{q-1}{d} \cdot deg(f)\cdot deg(g)}\cdot s(f)^{deg(g)} \cdot s(g)^{-deg(f)} $
+			$\left(\frac{f}{g}\right) \cdot \left(\frac{g}{f}\right)^{-1} = (-1)^{\frac{q-1}{d} \cdot deg(f)\cdot deg(g)}\cdot sgn(f)^{deg(g)} \cdot sgn(g)^{-deg(f)} $
 							
 		\end{block}
 	\end{frame}
@@ -190,7 +206,7 @@
 			Sei $f$ das zu testende Polynom und $a$ ein Polynom, s.d. 
 			$q$ Charakteristik des Rings, $d$ der Grad von $f$.
 			Falls $a^{q^{d}-1}\equiv 1 \text{ mod }f$ und 
-			$\exists p > q^{\frac{d}{2}} text{, } p \text{ prim, } p|q^{d}-1 $ : $ggT(a^{\frac{q^{d}-1}{p}}-1, f)=1$, dann ist $f$ irreduzibel. 
+			$\exists p \in [q^{\frac{d}{2}}, \frac{q^{d-1}}{2}]\text{, } p \text{ prim, } p|q^{d-1} $ : $ggT(a^{\frac{q^{d-1}}{p}}-1, f)=1$, dann ist $f$ irreduzibel. 
 		\end{block}
 	
 	%Das Blöde ist, ein solches $p$ existiert nicht immer; dafür ist gut, dass wenn es mal funktioniert, hat man ein Zertifikat, mit dem man leicht nachweisen kann, dass es prim/irreduzibel ist.
